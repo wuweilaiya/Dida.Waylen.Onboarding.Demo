@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Core.Plugin.Extensions.EntityFrameworkCore" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.Data.UoW.EFCore" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.PubSub.Cqrs" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.PubSub.EventBus.Local" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.AllInOne" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.Validation.FluentValidation" Version="1.0.34" />
+    <PackageReference Include="Core.Plugin.Web.Sidecar.Account" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.Web.Sidecar.BasicData" Version="1.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Dida.Waylen.Onboarding.Demo.Infrastructure.AllInOne\Dida.Waylen.Onboarding.Demo.Infrastructure.AllInOne.csproj" />
+    <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared.Model\Dida.Waylen.Onboarding.Demo.Shared.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\Db\demo.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Applications\Hotels\Commands\" />
+    <Folder Include="Applications\Hotels\Queries\" />
+    <Folder Include="Applications\Rooms\Commands\" />
+    <Folder Include="Applications\Rooms\Queries\" />
+    <Folder Include="Applications\Rooms\Validators\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="NuGetHelper.exe VS pre-build $(ProjectPath) $(SolutionDir)" />
+  </Target>
+</Project>

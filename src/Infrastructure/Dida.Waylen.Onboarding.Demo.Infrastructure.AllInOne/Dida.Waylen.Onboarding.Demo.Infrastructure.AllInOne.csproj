@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.AllInOne" Version="1.0.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dida.Waylen.Onboarding.Demo.Infrastructure.Database.EF.Sqlite\Dida.Waylen.Onboarding.Demo.Infrastructure.Database.EF.Sqlite.csproj" />
+    <ProjectReference Include="..\Dida.Waylen.Onboarding.Demo.Infrastructure.Database.Sqlite\Dida.Waylen.Onboarding.Demo.Infrastructure.Database.Sqlite.csproj" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="NuGetHelper.exe VS pre-build $(ProjectPath) $(SolutionDir)" />
+  </Target>
+
+</Project>
