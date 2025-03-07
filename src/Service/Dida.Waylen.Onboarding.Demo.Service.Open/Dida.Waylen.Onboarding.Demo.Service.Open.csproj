@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Dida.Waylen.Onboarding.Demo.Infrastructure.AllInOne\Dida.Waylen.Onboarding.Demo.Infrastructure.AllInOne.csproj" />
-    <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared.Model\Dida.Waylen.Onboarding.Demo.Shared.Model.csproj" />
+    <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared\Dida.Waylen.Onboarding.Demo.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

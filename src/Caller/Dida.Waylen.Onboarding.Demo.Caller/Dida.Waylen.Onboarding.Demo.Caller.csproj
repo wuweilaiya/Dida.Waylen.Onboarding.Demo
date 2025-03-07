@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared\Dida.Waylen.Onboarding.Demo.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
