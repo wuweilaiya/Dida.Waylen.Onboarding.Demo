@@ -4,13 +4,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Core.Plugin.Caller" Version="1.0.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Dida.Waylen.Onboarding.Demo.Contract\Dida.Waylen.Onboarding.Demo.Contract.csproj" />
-  </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />
   </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared\Dida.Waylen.Onboarding.Demo.Shared.csproj" />
+  </ItemGroup>
 </Project>
