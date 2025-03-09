@@ -1,4 +1,6 @@
-﻿namespace Dida.Waylen.Onboarding.Demo.Service.Open.Data.Entities;
+﻿using Framework.Common.ExceptionOperation.Exceptions;
+
+namespace Dida.Waylen.Onboarding.Demo.Service.Open.Data.Entities;
 
 /// <summary>
 /// 酒店实体类，表示酒店的基本信息及其包含的房间
@@ -45,25 +47,25 @@ public class Hotel : FullAuditedEntity<long>
     /// </summary>
     public IReadOnlyCollection<Room> Rooms => _rooms;
 
-    /// <summary>
-    /// 私有构造函数，用于 EF Core 和序列化
-    /// </summary>
-    private Hotel()
-    {
-    }
+    ///// <summary>
+    ///// 私有构造函数，用于 EF Core 和序列化
+    ///// </summary>
+    //private Hotel()
+    //{
+    //}
 
-    /// <summary>
-    /// 创建酒店实体
-    /// </summary>
-    /// <param name="name">酒店名称</param>
-    /// <param name="address">酒店地址</param>
-    /// <param name="contact">联系方式</param>
-    public Hotel(string name, Address address, Contact contact)
-    {
-        Name = name;
-        Address = address;
-        Contact = contact;
-    }
+    ///// <summary>
+    ///// 创建酒店实体
+    ///// </summary>
+    ///// <param name="name">酒店名称</param>
+    ///// <param name="address">酒店地址</param>
+    ///// <param name="contact">联系方式</param>
+    //public Hotel(string name, Address address, Contact contact)
+    //{
+    //    Name = name;
+    //    Address = address;
+    //    Contact = contact;
+    //}
 
     /// <summary>
     /// 添加房间到酒店
@@ -71,15 +73,40 @@ public class Hotel : FullAuditedEntity<long>
     /// <param name="rooms">要添加的房间数组</param>
     public void AddRooms(params Room[] rooms)
     {
+        CheckRoomExist(rooms);
         _rooms.AddRange(rooms);
+    }
+
+    /// <summary>
+    /// 更新酒店的房间信息
+    /// </summary>
+    /// <param name="rooms"></param>
+    public void UpdateRoom(long roomId, UpdateHotelRoomDto room)
+    {
+        var targetRoom = _rooms.FirstOrDefault(r => r.Id == roomId);
+        if (targetRoom == null)
+        {
+            throw new FriendlyException($"酒店[{Name}]找不到此房间！");
+        }
+        room.Adapt(targetRoom);
+        CheckRoomExist(targetRoom);
     }
 
     /// <summary>
     /// 从酒店移除指定房间
     /// </summary>
     /// <param name="rooms">要移除的房间数组</param>
-    public void RemoveRooms(params Room[] rooms)
+    public void RemoveRooms(IEnumerable<long> roomIds)
     {
-        _rooms.RemoveAll(rooms.Contains);
+        _rooms.RemoveAll(e => roomIds.Contains(e.Id));
+    }
+
+    void CheckRoomExist(params Room[] rooms)
+    {
+        var existRooms = rooms.Where(r => _rooms.Any(e => r.Id != e.Id && r.Number == e.Number));
+        if (existRooms.Any())
+        {
+            throw new FriendlyException($"酒店[{Name}]已经存在房间：{string.Join(',', existRooms.Select(r => r.Number))}！");
+        }
     }
 }

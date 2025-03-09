@@ -3,7 +3,7 @@
 /// <summary>
 /// 酒店分页查询
 /// </summary>
-public record GetHotelPageQuery(GetRoomPageDto Dto) : Query<PagedResultDto<RoomDto>>
+public record GetHotelPageQuery(GetRoomPagedDto Dto) : Query<PagedResultDto<RoomDto>>
 {
 }
 

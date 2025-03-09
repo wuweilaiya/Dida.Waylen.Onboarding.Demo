@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Core.Plugin.Data.Database.EntityFrameworkCore.Abstractions" Version="1.0.41" />
+    <PackageReference Include="Core.Plugin.Data.Database.EntityFrameworkCore.Abstractions" Version="1.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.13" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Dida.Waylen.Onboarding.Demo.Infrastructure.Database.Sqlite\Dida.Waylen.Onboarding.Demo.Infrastructure.Database.Sqlite.csproj" />
   </ItemGroup>
-
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />
+  </Target>
 </Project>

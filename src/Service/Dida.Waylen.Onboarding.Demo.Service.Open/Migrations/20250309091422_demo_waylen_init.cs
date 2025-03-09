@@ -57,7 +57,7 @@ namespace Dida.Waylen.Onboarding.Demo.Service.Open.Migrations
                     Id = table.Column<long>(type: "INTEGER", nullable: false, comment: "主键")
                         .Annotation("Sqlite:Autoincrement", true),
                     HotelId = table.Column<long>(type: "INTEGER", nullable: false),
-                    Number = table.Column<string>(type: "TEXT", nullable: false),
+                    Number = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false, comment: "房间号码"),
                     Type = table.Column<int>(type: "INTEGER", nullable: false, comment: "房型"),
                     TypeDescription = table.Column<string>(type: "TEXT", nullable: false, comment: "房型描述"),
                     BedType = table.Column<int>(type: "INTEGER", nullable: false, comment: "床型"),

@@ -17,36 +17,6 @@ namespace Dida.Waylen.Onboarding.Demo.Service.Open.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.13");
 
-            modelBuilder.Entity("Dida.Waylen.Onboarding.Demo.Data.Entities.Sample", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CreateUserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("UpdateUserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Samples");
-                });
-
             modelBuilder.Entity("Dida.Waylen.Onboarding.Demo.Service.Open.Data.Entities.Hotel", b =>
                 {
                     b.Property<long>("Id")
@@ -144,7 +114,10 @@ namespace Dida.Waylen.Onboarding.Demo.Service.Open.Migrations
 
                     b.Property<string>("Number")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("TEXT")
+                        .HasComment("房间号码");
 
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER")

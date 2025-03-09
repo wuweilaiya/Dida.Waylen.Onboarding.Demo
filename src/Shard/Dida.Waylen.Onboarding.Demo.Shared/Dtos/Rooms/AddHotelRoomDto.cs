@@ -3,7 +3,7 @@
 /// <summary>
 /// 创建房间请求Dto
 /// </summary>
-public class CreateRoomDto
+public class AddHotelRoomDto
 {
     /// <summary>
     /// 房间号码

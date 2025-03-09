@@ -3,7 +3,7 @@
 /// <summary>
 /// 酒店分页查询Dto
 /// </summary>
-public class GetHotelPageDto : PagedAndSortedResultRequestDto
+public class GetHotelPagedDto : PagedAndSortedResultRequestDto
 {
     /// <summary>
     /// 搜索关键字（酒店名称/描述）
