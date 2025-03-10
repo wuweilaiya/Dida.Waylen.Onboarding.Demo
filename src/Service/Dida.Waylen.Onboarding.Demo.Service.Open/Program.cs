@@ -1,10 +1,4 @@
-﻿using Aliyun.Api.LogService.Infrastructure.Protocol;
-using Core.Plugin.Web.Sidecar.Account;
-using Core.Plugin.Web.Sidecar.BasicData;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 var aioOptions = new DidaAllInOneOptions(builder, Projects.DidaApi);
 aioOptions.GlobalServiceRouteOptions.AdditionalAssemblies = [typeof(BasicDataService).Assembly];
@@ -25,10 +19,10 @@ aioOptions.OnConfigureServicesBefore(AllInOneProvider.DI, services =>
 });
 
 aioOptions.OnConfigureBefore(AllInOneProvider.MinimalAPIs, app =>
-{   
+{
     app.Use(async (context, next) =>
     {
-        if (!context.Request.Path.ToString().Contains("/api2"))
+        if (!context.Request.Path.ToString().Contains("/api"))
         {
             await next(context);
 
@@ -43,18 +37,22 @@ aioOptions.OnConfigureBefore(AllInOneProvider.MinimalAPIs, app =>
 
             await next(context);
 
-            memoryStream.Position = 0;
+            memoryStream.Seek(0, SeekOrigin.Begin);
 
             var reader = new StreamReader(memoryStream);
             var responseBody = await reader.ReadToEndAsync();
 
             var data = JsonSerializer.Deserialize<object>(responseBody);
             await TypedResults.Ok(data).ExecuteAsync(context);
-        }
-        finally
-        {
-            // 恢复原始的响应流
+
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            await memoryStream.CopyToAsync(originalBodyStream);
             context.Response.Body = originalBodyStream;
+        }
+        catch
+        {
+            context.Response.Body = originalBodyStream;
+            await next(context);
         }
     });
 });

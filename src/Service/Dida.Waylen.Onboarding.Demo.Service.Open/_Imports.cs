@@ -29,3 +29,4 @@ global using Microsoft.AspNetCore.Http.HttpResults;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Core.Plugin.Web.Sidecar.BasicData;
