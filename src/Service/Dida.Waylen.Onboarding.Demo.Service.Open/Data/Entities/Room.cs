@@ -10,6 +10,8 @@ public class Room : FullAuditedEntity<long>
     /// </summary>
     public Hotel Hotel { get; set; } = default!;
 
+    public long HotelId { get; set; }
+
     /// <summary>
     /// 房间号码
     /// </summary>

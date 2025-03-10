@@ -6,7 +6,7 @@ public class RoomEntityTypeConfiguration : IEntityTypeConfiguration<Room>
     {
         builder.ToTable("Room");
         builder.PropertyFullAuditedEntity();
-        //builder.HasIndex(e => new { e.Hotel.Id, e.Number }).IsUnique();
+        builder.HasIndex(e => new { e.HotelId, e.Number }).IsUnique();
         builder.HasIndex(e => e.Type);
         builder.HasIndex(e => e.BedType);
         builder.Property(e => e.Number).HasMaxLength(50).IsRequired().HasComment("房间号码");
