@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dida.Waylen.Onboarding.Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dida.Waylen.Onboarding.Demo.Contract", "src\Infrastructure\Dida.Waylen.Onboarding.Demo.Contract\Dida.Waylen.Onboarding.Demo.Contract.csproj", "{CCA9675B-14B7-4211-A078-1147CBD15192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dida.Waylen.Onboarding.Demo.Caller.Tests", "src\Test\Dida.Waylen.Onboarding.Demo.Caller.Tests\Dida.Waylen.Onboarding.Demo.Caller.Tests.csproj", "{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{CCA9675B-14B7-4211-A078-1147CBD15192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCA9675B-14B7-4211-A078-1147CBD15192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCA9675B-14B7-4211-A078-1147CBD15192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{34AEC9A3-57AE-46EE-A3FE-49B66C6E191F} = {9624EB36-5285-4A79-8203-1963EBCB6A17}
 		{CD12BBFD-15F8-D4C0-1BAD-2085F66EF5B4} = {61550076-96BC-4373-AD24-CDCCFF148394}
 		{CCA9675B-14B7-4211-A078-1147CBD15192} = {61550076-96BC-4373-AD24-CDCCFF148394}
+		{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B} = {E3AA8B2A-46A8-43E6-A851-52E59CC04B8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6EE5A80-7DF2-48E5-B24A-8817A54C56A2}

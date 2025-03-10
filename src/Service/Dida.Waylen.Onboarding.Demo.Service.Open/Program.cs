@@ -25,10 +25,10 @@ aioOptions.OnConfigureServicesBefore(AllInOneProvider.DI, services =>
 });
 
 aioOptions.OnConfigureBefore(AllInOneProvider.MinimalAPIs, app =>
-{
+{   
     app.Use(async (context, next) =>
     {
-        if (!context.Request.Path.ToString().Contains("/api/"))
+        if (!context.Request.Path.ToString().Contains("/api2"))
         {
             await next(context);
 

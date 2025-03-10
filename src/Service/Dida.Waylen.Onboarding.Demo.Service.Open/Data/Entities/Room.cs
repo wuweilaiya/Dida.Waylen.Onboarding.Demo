@@ -13,7 +13,7 @@ public class Room : FullAuditedEntity<long>
     /// <summary>
     /// 房间号码
     /// </summary>
-    public string Number { get; set; } = string.Empty;
+    public required string Number { get; set; } = string.Empty;
 
     /// <summary>
     /// 房间类型
@@ -43,5 +43,5 @@ public class Room : FullAuditedEntity<long>
     /// <summary>
     /// 房间图片信息
     /// </summary>
-    public required Image Image { get; set; } = new();
+    public Image Image { get; set; } = new();
 }

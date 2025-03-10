@@ -16,10 +16,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Service\Dida.Waylen.Onboarding.Demo.Service.Open\Dida.Waylen.Onboarding.Demo.Service.Open.csproj" />
+    <ProjectReference Include="..\..\Caller\Dida.Waylen.Onboarding.Demo.Caller\Dida.Waylen.Onboarding.Demo.Caller.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Validators\" />
+    <Using Include="Xunit" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />

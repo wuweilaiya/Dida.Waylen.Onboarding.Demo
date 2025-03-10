@@ -3,9 +3,9 @@
 /// <summary>
 /// 图片详情DTO验证器
 /// </summary>
-public class ImageValidator : AbstractValidator<ImageDetailDto>
+public class ImageAttachedValidator : AbstractValidator<ImageAttachedDto>
 {
-    public ImageValidator()
+    public ImageAttachedValidator()
     {
         RuleFor(x => x.Url)
             .NotEmpty()
@@ -48,9 +48,9 @@ public class ImageValidator : AbstractValidator<ImageDetailDto>
 /// <summary>
 /// 图片DTO验证器
 /// </summary>
-public class ImageDtoValidator : AbstractValidator<ImageDto>
+public class ImageValidator : AbstractValidator<ImageDto>
 {
-    public ImageDtoValidator()
+    public ImageValidator()
     {
         RuleFor(x => x.Url)
             .NotEmpty()
@@ -72,7 +72,7 @@ public class ImageDtoValidator : AbstractValidator<ImageDto>
             .WithMessage("附加图片集合不能为null");
 
         RuleForEach(x => x.Attached)
-            .SetValidator(new ImageValidator())
+            .SetValidator(new ImageAttachedValidator())
             .When(x => x.Attached.Any());
 
         // 自定义复合验证规则

@@ -69,25 +69,5 @@ public class Address : ValueObject
     /// 邮政编码
     /// </summary>
     public string PostalCode { get; set; } = string.Empty;
-
-    ///// <summary>
-    ///// 私有构造函数,用于 EF Core 和序列化
-    ///// </summary>
-    //private Address()
-    //{
-    //}
-
-    ///// <summary>
-    ///// 创建地址值对象
-    ///// </summary>
-    ///// <param name="latitude">纬度</param>
-    ///// <param name="longitude">经度</param>
-    ///// <param name="detail">详细地址</param>
-    //public Address(int latitude, int longitude, string detail)
-    //{
-    //    Latitude = latitude;
-    //    Longitude = longitude;
-    //    Detail = detail;
-    //}
 }
 

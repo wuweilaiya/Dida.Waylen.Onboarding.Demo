@@ -47,26 +47,6 @@ public class Hotel : FullAuditedEntity<long>
     /// </summary>
     public IReadOnlyCollection<Room> Rooms => _rooms;
 
-    ///// <summary>
-    ///// 私有构造函数，用于 EF Core 和序列化
-    ///// </summary>
-    //private Hotel()
-    //{
-    //}
-
-    ///// <summary>
-    ///// 创建酒店实体
-    ///// </summary>
-    ///// <param name="name">酒店名称</param>
-    ///// <param name="address">酒店地址</param>
-    ///// <param name="contact">联系方式</param>
-    //public Hotel(string name, Address address, Contact contact)
-    //{
-    //    Name = name;
-    //    Address = address;
-    //    Contact = contact;
-    //}
-
     /// <summary>
     /// 添加房间到酒店
     /// </summary>
