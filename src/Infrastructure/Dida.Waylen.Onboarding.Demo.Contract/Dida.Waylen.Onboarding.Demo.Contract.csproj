@@ -10,4 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared\Dida.Waylen.Onboarding.Demo.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Framework.Extensions.DependencyInjection" Version="1.0.*" />
+  </ItemGroup>
 </Project>

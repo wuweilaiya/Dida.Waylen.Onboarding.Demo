@@ -24,7 +24,7 @@ aioOptions.OnConfigureServicesBefore(AllInOneProvider.DI, services =>
     services.AddFluentValidation();
 });
 
-aioOptions.OnConfigureBefore(AllInOneProvider.All, app =>
+aioOptions.OnConfigureBefore(AllInOneProvider.MinimalAPIs, app =>
 {
     app.Use(async (context, next) =>
     {

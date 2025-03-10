@@ -1,10 +1,6 @@
-﻿using Core.DataModel.Dtos;
-using Dida.Waylen.Onboarding.Demo.Shared.Model.Dtos.Hotels;
-using Dida.Waylen.Onboarding.Demo.Shared.Model.Dtos.Rooms;
+﻿namespace Dida.Waylen.Onboarding.Demo.Contract.Interfaces;
 
-namespace Dida.Waylen.Onboarding.Demo.Contract.Interfaces;
-
-public interface IHotelCaller
+public interface IHotelCaller : IScoped
 {
     /// <summary>
     /// 获取酒店分页列表
@@ -18,7 +14,7 @@ public interface IHotelCaller
     /// </summary>
     /// <param name="id">酒店ID</param>
     /// <returns>酒店详细信息</returns>
-    Task<HotelDetailDto> GetAsync(long id);
+    Task<HotelDetailDto?> GetAsync(long id);
 
     /// <summary>
     /// 添加新酒店
@@ -83,5 +79,5 @@ public interface IHotelCaller
     /// <param name="id">酒店ID</param>
     /// <param name="roomIds">房间ID数组</param>
     /// <returns>操作结果</returns>
-    Task BatchDeleteRoomAsync(long[] roomIds);
+    Task BatchDeleteRoomAsync(long id, long[] roomIds);
 }

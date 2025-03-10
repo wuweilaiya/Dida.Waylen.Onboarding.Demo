@@ -1,32 +1,26 @@
-﻿using Core.DataModel.Dtos;
-using Dida.Waylen.Onboarding.Demo.Shared.Model.Dtos.Hotels;
-using Framework.Service.Caller.Abstractions;
+﻿namespace Dida.Waylen.Onboarding.Demo.Caller.ServiceCallers;
 
-namespace Dida.Waylen.Onboarding.Demo.Caller.ServiceCallers;
-
-public class HotelServiceCaller : ServiceCallerBase
+public class HotelServiceCaller(HotelCallerClient callerClient) : ServiceCallerBase(callerClient), IScoped
 {
-    private static readonly string _urlPrefix = "api/v1/HotelServicecs";
+    protected override string UrlPrefix => "api/v1/HotelServicecs";
 
-    public HotelServiceCaller(HotelCallerClient callerClient) : base(callerClient)
-    {
-    }
+    public async Task<PagedResultDto<HotelDto>> GetPagedAsync(GetHotelPagedDto dto) => await GetAsync<PagedResultDto<HotelDto>>(dto) ?? new();
 
-    public Task<PagedResultDto<HotelDto>> GetPagedAsync(GetHotelPagedDto dto)
-    {
-        return CallerClient.GetAsync<PagedResultDto<HotelDto>>($"{_urlPrefix}/Paged?{ToQueryString(dto)}");
-    }
+    public Task<HotelDetailDto?> GetAsync(long id) => GetAsync<HotelDetailDto>($"{id}");
 
-    public Task<HotelDetailDto> GetAsync(long id)
-    {
-        return CallerClient.GetAsync<HotelDetailDto>($"{_urlPrefix}/{id}");
-    }
+    public Task AddAsync(CreateHotelDto dto) => PostAsync(default, dto);
 
-    string ToQueryString(GetHotelPagedDto dto)
-    {
-        var properties = dto.GetType().GetProperties();
-        var queryString = string.Join("&", properties.Select(p => $"{p.Name}={p.GetValue(dto)}"));
+    public Task UpdateAsync(long id, UpdateHotelDto dto) => PutAsync($"{id}", dto);
 
-        return queryString;
-    }
+    public Task DeleteAsync(long id) => DeleteAsync($"{id}");
+
+    public Task BatchDeleteAsync(long[] ids) => DeleteAsync($"Batch?{string.Join("&", ids.Select(id => $"ids={id}"))}");
+
+    public Task AddRoomAsync(long id, AddHotelRoomDto dto) => PostAsync($"{id}/Room", dto);
+
+    public Task UpdateRoomAsync(long id, long roomId, UpdateHotelRoomDto dto) => PutAsync($"{id}/Room/{roomId}", dto);
+
+    public Task DeleteRoomAsync(long id, long roomId) => DeleteAsync($"{id}/Room/{roomId}");
+
+    public Task BatchDeleteRoomAsync(long id, long[] roomIds) => DeleteAsync($"Room/Batch?{string.Join("&", roomIds.Select(roomId => $"roomIds={roomId}"))}");
 }
