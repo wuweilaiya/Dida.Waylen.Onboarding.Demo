@@ -2,7 +2,7 @@
 
 public class HotelServiceCaller(HotelCallerClient callerClient) : ServiceCallerBase(callerClient), IScoped
 {
-    protected override string UrlPrefix => "api/v1/HotelServicecs";
+    protected override string UrlPrefix => "api/v1/Hotels";
 
     public async Task<PagedResultDto<HotelDto>> GetPagedAsync(GetHotelPagedDto dto) => await GetAsync<PagedResultDto<HotelDto>>(dto) ?? new();
 
@@ -16,11 +16,11 @@ public class HotelServiceCaller(HotelCallerClient callerClient) : ServiceCallerB
 
     public Task BatchDeleteAsync(long[] ids) => DeleteAsync($"Batch?{string.Join("&", ids.Select(id => $"ids={id}"))}");
 
-    public Task AddRoomAsync(long id, AddHotelRoomDto dto) => PostAsync($"{id}/Room", dto);
+    public Task AddRoomAsync(long id, AddHotelRoomDto dto) => PostAsync($"{id}/Rooms", dto);
 
-    public Task UpdateRoomAsync(long id, long roomId, UpdateHotelRoomDto dto) => PutAsync($"{id}/Room/{roomId}", dto);
+    public Task UpdateRoomAsync(long id, long roomId, UpdateHotelRoomDto dto) => PutAsync($"{id}/Rooms/{roomId}", dto);
 
-    public Task DeleteRoomAsync(long id, long roomId) => DeleteAsync($"{id}/Room/{roomId}");
+    public Task DeleteRoomAsync(long id, long roomId) => DeleteAsync($"{id}/Rooms/{roomId}");
 
     public Task BatchDeleteRoomAsync(long id, long[] roomIds) => DeleteAsync($"Room/Batch?{string.Join("&", roomIds.Select(roomId => $"roomIds={roomId}"))}");
 }

@@ -63,7 +63,7 @@ public static class ServiceCollectionExtensions
         didaAllInOneBuilder.AddLoggingProvider().AddOpenTelemetryProvider().AddGlobalizationProvider()
             .AddCorsProvider()
             .AddBasicProvider()
-            //.AddEFProvider()
+            .AddEFProvider()
             .AddSqliteEFProvider()
             .AddSwaggerProvider()
             .AddGlobalExceptionLoggingProvider()

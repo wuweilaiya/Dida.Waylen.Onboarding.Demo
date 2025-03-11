@@ -2,6 +2,7 @@
 
 var aioOptions = new DidaAllInOneOptions(builder, Projects.DidaApi);
 aioOptions.GlobalServiceRouteOptions.AdditionalAssemblies = [typeof(BasicDataService).Assembly];
+aioOptions.DisableEFProvider = true;
 
 aioOptions.OnConfigureServicesBefore(AllInOneProvider.EF, service =>
 {
@@ -16,45 +17,6 @@ aioOptions.OnConfigureServicesBefore(AllInOneProvider.EF, service =>
 aioOptions.OnConfigureServicesBefore(AllInOneProvider.DI, services =>
 {
     services.AddFluentValidation();
-});
-
-aioOptions.OnConfigureBefore(AllInOneProvider.MinimalAPIs, app =>
-{
-    app.Use(async (context, next) =>
-    {
-        if (!context.Request.Path.ToString().Contains("/api"))
-        {
-            await next(context);
-
-            return;
-        }
-
-        var originalBodyStream = context.Response.Body;
-        try
-        {
-            using var memoryStream = new MemoryStream();
-            context.Response.Body = memoryStream;
-
-            await next(context);
-
-            memoryStream.Seek(0, SeekOrigin.Begin);
-
-            var reader = new StreamReader(memoryStream);
-            var responseBody = await reader.ReadToEndAsync();
-
-            var data = JsonSerializer.Deserialize<object>(responseBody);
-            await TypedResults.Ok(data).ExecuteAsync(context);
-
-            memoryStream.Seek(0, SeekOrigin.Begin);
-            await memoryStream.CopyToAsync(originalBodyStream);
-            context.Response.Body = originalBodyStream;
-        }
-        catch
-        {
-            context.Response.Body = originalBodyStream;
-            await next(context);
-        }
-    });
 });
 
 var app = builder.Services.AddDidaAllInOneDemo(aioOptions);

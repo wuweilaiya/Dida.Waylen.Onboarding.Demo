@@ -9,8 +9,9 @@ namespace Dida.Waylen.Onboarding.Demo.Service.Open.Services;
 /// 酒店服务类，提供酒店及其房间的增删改查功能
 /// </summary>
 [AutoValidation]
-public class HotelServicecs : ServiceBase
+public class HotelService : ServiceBase
 {
+
     /// <summary>
     /// 获取酒店分页列表
     /// </summary>
@@ -96,7 +97,7 @@ public class HotelServicecs : ServiceBase
     /// <param name="id">酒店ID</param>
     /// <param name="dto">添加房间数据</param>
     /// <returns>操作结果</returns>
-    [RoutePattern(Pattern = "{id}/Room")]
+    [RoutePattern(Pattern = "{id}/Rooms")]
     public Task AddRoomAsync([FromServices] ILocalEventBus localEventBus, long id, AddHotelRoomDto dto)
     {
         var command = new AddHotelRoomCommand(id, dto);
@@ -111,7 +112,7 @@ public class HotelServicecs : ServiceBase
     /// <param name="roomId">房间ID</param>
     /// <param name="dto">更新房间数据</param>
     /// <returns>操作结果</returns>
-    [RoutePattern(Pattern = "{id}/Room/{roomId}")]
+    [RoutePattern(Pattern = "{id}/Rooms/{roomId}")]
     public Task UpdateRoomAsync([FromServices] ILocalEventBus localEventBus, long id, long roomId, UpdateHotelRoomDto dto)
     {
         var command = new UpdateHotelRoomCommand(id, roomId, dto);
@@ -125,7 +126,7 @@ public class HotelServicecs : ServiceBase
     /// <param name="id">酒店ID</param>
     /// <param name="roomId">房间ID</param>
     /// <returns>操作结果</returns>
-    [RoutePattern(Pattern = "{id}/Room/{roomId}")]
+    [RoutePattern(Pattern = "{id}/Rooms/{roomId}")]
     public Task DeleteRoomAsync([FromServices] ILocalEventBus localEventBus, long id, long roomId)
     {
         var command = new RemoveHotelRoomCommand(id, roomId);
@@ -139,7 +140,7 @@ public class HotelServicecs : ServiceBase
     /// <param name="id">酒店ID</param>
     /// <param name="roomIds">房间ID数组</param>
     /// <returns>操作结果</returns>
-    [RoutePattern(HttpMethod = "Delete", Pattern = "Room/Batch")]
+    [RoutePattern(HttpMethod = "Delete", Pattern = "Rooms/Batch")]
     public Task BatchDeleteRoomAsync([FromServices] ILocalEventBus localEventBus, long id, [FromQuery] long[] roomIds)
     {
         var command = new RemoveHotelRoomCommand(id, roomIds);

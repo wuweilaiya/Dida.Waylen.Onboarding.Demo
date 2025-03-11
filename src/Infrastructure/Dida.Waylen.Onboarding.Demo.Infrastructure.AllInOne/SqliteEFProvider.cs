@@ -33,11 +33,6 @@ public static class SqliteEFProvider
 
     public static DidaAllInOneBuilder AddSqliteEFProvider(this DidaAllInOneBuilder builder)
     {
-        if (builder.Options.DisableEFProvider)
-        {
-            return builder;
-        }
-
         var providerInterceptorType = typeof(EFProvider).Assembly.GetType("Core.Plugin.Web.MinimalAPIs.AllInOne.Interceptors.ProviderInterceptor");
         MethodInfo method = providerInterceptorType.GetMethod("AddServices", BindingFlags.NonPublic | BindingFlags.Static);
         method.Invoke(null, new object[] { builder, AllInOneProvider.EF, OnConfigureServices, OnConfigure });
