@@ -1,0 +1,53 @@
+<Project>
+  <PropertyGroup>
+    <!-- 启动中央包管理 -->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+
+    <!-- 启用传递性锁定，确保间接依赖项版本一致 -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+
+    <!-- 允许在项目中覆盖包版本 -->
+    <!--<CentralPackageVersionOverrideEnabled>true</CentralPackageVersionOverrideEnabled>-->
+
+    <!-- 启用浮动版本 -->
+    <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+  </PropertyGroup>
+
+  <!--现有包版本管理-->
+  <ItemGroup>
+    <!--架构相关包-->
+    <PackageVersion Include="Core.Plugin.Data.UoW.EFCore" Version="1.0.*" />
+    <PackageVersion Include="Core.Plugin.PubSub.Cqrs" Version="1.0.*"/>
+    <PackageVersion Include="Core.Plugin.PubSub.EventBus.Local" Version="1.0.*" />
+    <PackageVersion Include="Core.Plugin.Web.MinimalAPIs.Allinone" Version="1.0.*" />
+    <PackageVersion Include="Core.Plugin.Data.Database.Abstractions" Version="1.0.*" />
+    <PackageVersion Include="Core.Plugin.Web.MinimalAPIs.Validation.FluentValidation" Version="1.0.34" />
+    <PackageVersion Include="Core.Plugin.Extensions.EntityFrameworkCore" Version="1.0.*" />
+    <PackageVersion Include="Core.Plugin.Data.Database.EntityFrameworkCore.Abstractions" VPersion="1.0.*" />
+    <PackageVersion Include="Core.Plugin.Web.Sidecar.Account" Version="1.0.*" />
+    <PackageVersion Include= "Core.Plugin.Web.Sidecar.BasicData" Veersion="1.0.*" />
+    <PackageVersion Include="Core.Plugin.Caller" Version="1.0.*" />
+    <PackageVersion Include="Core.DataModel.Dtos" Version="1.0.*" />
+    <PackageVersion Include="Framework.Extensions.DependencyInjecttion" Version="1.0.*" />
+
+    <!--常见的额外包-根据你的项目需求添加或删除-->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.13" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Versioon="8.0.13" />
+
+    <!--全局包-->
+    <!--<PackageVersion Include="System.Text.Json" Versionn="8.0.0" /2-->
+
+    <!--测试相关包-添加到已有的测试包-->
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+    <Packageversion Include="Microsoft.NET.Test.Sdk" Version="17.83.0" />
+    <PackageVersion Include="xunit" Version="2.6.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.5" />
+    <PackageVersion Include="Moq" Version="4.20.70" />
+    <PackageVersion Include= "FluentAssertions" Version="6.12.0" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />
+  </Target>
+</Project>

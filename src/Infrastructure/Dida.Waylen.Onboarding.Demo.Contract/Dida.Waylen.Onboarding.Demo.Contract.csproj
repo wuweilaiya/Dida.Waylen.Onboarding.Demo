@@ -4,13 +4,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />
-  </Target>
   <ItemGroup>
     <ProjectReference Include="..\..\Shard\Dida.Waylen.Onboarding.Demo.Shared\Dida.Waylen.Onboarding.Demo.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Framework.Extensions.DependencyInjection" Version="1.0.*" />
+    <PackageReference Include="Framework.Extensions.DependencyInjection" />
   </ItemGroup>
 </Project>

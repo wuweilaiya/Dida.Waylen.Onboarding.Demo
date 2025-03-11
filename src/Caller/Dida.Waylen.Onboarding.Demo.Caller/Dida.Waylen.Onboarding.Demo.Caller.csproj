@@ -5,12 +5,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Core.Plugin.Caller" Version="1.0.*" />
+    <PackageReference Include="Core.Plugin.Caller" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Dida.Waylen.Onboarding.Demo.Contract\Dida.Waylen.Onboarding.Demo.Contract.csproj" />
   </ItemGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />
-  </Target>
 </Project>

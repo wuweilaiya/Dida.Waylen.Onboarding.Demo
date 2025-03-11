@@ -5,15 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Core.Plugin.Extensions.EntityFrameworkCore" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.Data.UoW.EFCore" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.PubSub.Cqrs" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.PubSub.EventBus.Local" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.AllInOne" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.Validation.FluentValidation" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.Web.Sidecar.Account" Version="1.0.*" />
-    <PackageReference Include="Core.Plugin.Web.Sidecar.BasicData" Version="1.0.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
+    <PackageReference Include="Core.Plugin.Extensions.EntityFrameworkCore" />
+    <PackageReference Include="Core.Plugin.Data.UoW.EFCore" />
+    <PackageReference Include="Core.Plugin.PubSub.Cqrs" />
+    <PackageReference Include="Core.Plugin.PubSub.EventBus.Local" />
+    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.AllInOne" />
+    <PackageReference Include="Core.Plugin.Web.MinimalAPIs.Validation.FluentValidation" />
+    <PackageReference Include="Core.Plugin.Web.Sidecar.Account" />
+    <PackageReference Include="Core.Plugin.Web.Sidecar.BasicData" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -27,7 +27,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="NuGetHelper.exe VS pre-build $(ProjectPath) $(SolutionDir)" />
-  </Target>
 </Project>

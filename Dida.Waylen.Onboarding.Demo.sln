@@ -32,6 +32,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dida.Waylen.Onboarding.Demo.Caller.Tests", "src\Test\Dida.Waylen.Onboarding.Demo.Caller.Tests\Dida.Waylen.Onboarding.Demo.Caller.Tests.csproj", "{FEC396A6-54AB-4F63-A872-ACCCA9B7B10B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution", "_Solution", "{18BAE270-EDA4-42E7-9E7D-19AA4DC54628}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Packages.props = Directory.Packages.props
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

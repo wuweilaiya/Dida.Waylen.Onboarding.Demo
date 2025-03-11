@@ -5,10 +5,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Core.Plugin.Data.Database.Abstractions" Version="1.0.*" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.13" />
+    <PackageReference Include="Core.Plugin.Data.Database.Abstractions" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
   </ItemGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="NuGetHelper.exe VS pre-build &quot;$(ProjectPath)&quot; &quot;$(SolutionDir)&quot;" />
-  </Target>
 </Project>
